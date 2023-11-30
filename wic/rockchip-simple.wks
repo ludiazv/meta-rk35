@@ -21,7 +21,8 @@
 #part loader2    --offset 8192   --fixed-size 4096K            --source rawcopy                                                 --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
 #part atf        --offset 12288  --fixed-size 4096K
 part u-boot     --offset 32                                   --source rawcopy                                                 --sourceparams="file=${SPL_BINARY}" --no-table
-part /boot      --offset 16384  --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid --sourceparams="loader=u-boot"
+#part /boot      --offset 16384  --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid --sourceparams="loader=u-boot"
+part /boot      --offset 16384  --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid
 part /                                                        --source rootfs            --fstype=ext4 --label root --use-uuid
 
 bootloader --ptable gpt

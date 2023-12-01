@@ -15,6 +15,8 @@ IMAGE_BOOT_FILES = " \
 	${KERNEL_IMAGETYPE} \
 	${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', '${KERNEL_DEVICETREE}', d)} \
 	${@bb.utils.contains('KERNEL_IMAGETYPE', 'fitImage', '', 'boot.scr', d)} \
+	${@ d.getVar('RK35_BOOT_ENV') + '.txt' if (d.getVar('RK35_BOOT_ENV') or '').strip() else ''} \
+	${@ 'devicetree/*.dtbo;dtbo/' if (d.getVar('RK35_BOOT_ENV') or '').strip() else ''} \
 	"
 
 
@@ -50,3 +52,4 @@ WICVARS:append = " \
 	SPL_BINARY \
 	UBOOT_SUFFIX \
 	"
+# vim: ft=bitbake
